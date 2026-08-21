@@ -49,37 +49,71 @@ Next, I installed PostgreSQL 18. Initially, I couldn't run: psql --version becau
 
 ## Creating the Database
 
-Using pgAdmin, I created a PostgreSQL database called:\ it_knowledge\ My initial database structure was designed around categories, articles, and tags. \The tables were:\ it_knowledge │\ ├── categories\ ├── articles\ ├── tags\ └── article_tags\ The categories table contains the main knowledge-base categories. I created: Hardware Software Process I then verified them with:\ **SELECT** * **FROM** categories; and confirmed that all three categories existed.
+Using pgAdmin, I created a PostgreSQL database called:
+it_knowledge
+
+My initial database structure was designed around categories, articles, and tags. 
+The tables were:
+it_knowledge │
+├── categories
+├── articles
+├── tags
+└── article_tags
+
+The categories table contains the main knowledge-base categories. 
+I created: 
+Hardware
+Software
+Process
+
+I then verified them with:
+**SELECT** * **FROM** categories; and confirmed that all three categories existed.
 
 ## Creating the Articles Table
 
 The articles table stores the actual knowledge-base content.
-My initial structure included:\
-id\
-title\
-category_id\
-content\
-status\
-author\
-created_at\
-updated_at\
-last_reviewed\
+My initial structure included:
+id
+title
+category_id
+content
+status
+author
+created_at
+updated_at
+last_reviewed
 The relationship between articles and categories looks like this:\
-categories\
-    │\
-    │ category_id\
-    ▼\
-articles\
+categories
+    │
+    │ category_id
+    ▼
+articles
+
 This means an article can belong to a category such as Hardware, Software, or Process.
-For example:\
-### Laptop Will Not Power On\
-    │\
-    ▼\
-    Hardware\
+For example:
+
+### Laptop Will Not Power On
+    │
+    ▼
+    Hardware
 
 ## Connecting Python to PostgreSQL
 
-I then connected my FastAPI application to PostgreSQL. I installed: pip install psycopg2-binary python-dotenv I used psycopg2 to communicate with PostgreSQL and python-dotenv so that I could keep my database connection information out of my Python source code. I created a .env file inside the backend directory to store settings, sensitive information and other environmental varibles:\ backend\ ├── .env\ ├── .venv\ └── main.py\ The .env file contains my database connection string:\ DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@localhost:**5432**/it_knowledge I replaced YOUR_PASSWORD with the password I created when I installed PostgreSQL. \I also made sure not to publish my actual database password.
+I then connected my FastAPI application to PostgreSQL. 
+I installed: pip install psycopg2-binary python-dotenv I used psycopg2 to communicate with PostgreSQL and python-dotenv so that I could keep my database connection information out of my Python source code. 
+I created a .env file inside the backend directory to store settings, sensitive information and other environmental varibles:
+backend
+├── .env
+├── .venv
+└── main.py
+
+The .env file contains my database connection string:
+
+DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@localhost:**5432**
+it_knowledge 
+I replaced YOUR_PASSWORD with the password I created when I installed PostgreSQL. 
+
+I also made sure not to publish my actual database password.
 
 ## Building the FastAPI API
 
@@ -89,31 +123,34 @@ The first was a basic health check:\
 which returns:\
 {
   *message*: *IT Knowledge Base is running!*
-}\
-I then created:\
+}
+I then created:
 **GET** /categories
 This allows the application to retrieve the categories stored in PostgreSQL.
-The result looks like:\
-[\
-    {\
-    *id*: 1,\
-    *name*: *Hardware*\
-    },\
-    {\
-    *id*: 2,\
-    *name*: *Software*\
-    },\
-    {\
-    *id*: 3,\
-    *name*: *Process*\
-    }\
-]\
+The result looks like:
+
+[
+    {
+    *id*: 1,
+    *name*: *Hardware*
+    },
+    {
+    *id*: 2,
+    *name*: *Software*
+    },
+    {
+    *id*: 3,
+    *name*: *Process*
+    }
+]
 
 ## Creating Articles Through the API
 
-I then created a **POST** /articles endpoint.
+I then created a **POST** articles endpoint.
+
 This allows me to create an article through the **API**.
-For example:\
+For example:
+
 {
     *title*: *Laptop Will Not Power On*,
     *category_id*: 1,
@@ -126,14 +163,16 @@ When I executed the request through FastAPI's /docs interface, I received:
     *id*: 1,
     *message*: *Article created successfully*
 }
-That was my first real knowledge-base article.\
+That was my first real knowledge-base article.
+
 
 ## Retrieving Articles
 
-Next, I created:\
+Next, I created:
 **GET** /articles
+
 This endpoint queries PostgreSQL and joins the articles with their categories.
-The **API** can now return information such as:\
+The **API** can now return information such as:
 [
     {
     *id*: 1,
@@ -143,8 +182,10 @@ The **API** can now return information such as:\
     *author*: *IT Support*,
     *category*: *Hardware*
     }
-]\
-At this point I had a working data flow:\
+]
+
+At this point I had a working data flow:
+
 PostgreSQL
     │
     ▼
@@ -159,7 +200,15 @@ PostgreSQL
 
 ## Building the Frontend
 
-Once the backend was working, I created a frontend using Next.js. From my project directory, I ran: npx create-next-app@latest frontend This gave me: it-knowledge-base │ ├── backend │ └── frontend I started the frontend with: npm run dev The Next.js application became available at: [http://localhost:**3000**](http://localhost:**3000**) Initially, I saw the standard Next.js starter page. I replaced that page with my own IT Knowledge Base interface.
+Once the backend was working, I created a frontend using Next.js.
+From my project directory, I ran: npx create-next-app@latest frontend This gave me: 
+
+it-knowledge-base │
+├── backend │
+└── frontend
+I started the frontend with: npm run dev The Next.js application became available at: [http://localhost:**3000**](http://localhost:**3000**) 
+
+Initially, I saw the standard Next.js starter page. I replaced that page with my own IT Knowledge Base interface.
 
 ## Designing the Knowledge Base Homepage
 
@@ -202,8 +251,10 @@ Initially, the article on the homepage was hard-coded.
 That wasn't what I wanted.
 I wanted the website to retrieve its information from the database.
 I therefore added code to the Next.js application that calls:
+
 [http://**127**.0.0.1:**8000**/articles](http://**127**.0.0.1:**8000**/articles)
 The flow became:
+
 Next.js
     │
     │ **GET** /articles
@@ -223,6 +274,7 @@ Next.js
     │
     ▼
 Browser
+
 I also added **CORS** configuration to FastAPI so that the Next.js application running on port **3000** could communicate with the FastAPI application running on port **8000**.
 
 ## The Result
@@ -285,19 +337,50 @@ Hardware
 Software
 Process
 and my first article:
+
 ### Laptop Will Not Power On
+
 The frontend displays the real database content.
 
-What I Plan to Build Next This is only the foundation. My next goal is to turn this into a full IT support knowledge platform. Some of the features I plan to add include: Better article structure Instead of storing everything in one content field, I want articles to have structured sections: Article ├── Title ├── Category ├── Subcategory ├── Symptoms ├── Environment ├── Problem ├── Prerequisites ├── Troubleshooting Steps ├── Resolution ├── Verification ├── Escalation Criteria ├── Tags ├── Author └── Last Reviewed Search I want users to be able to search for things like: **VPN** won't connect and find the appropriate troubleshooting articles. Category navigation Users should be able to browse: Hardware ├── Laptops ├── Desktops ├── Printers └── Networking
+What I Plan to Build Next This is only the foundation. My next goal is to turn this into a full IT support knowledge platform. 
+Some of the features I plan to add include: 
+Better article structure Instead of storing everything in one content field, I want articles to have structured sections: 
+Article 
+├── Title
+├── Category 
+├── Subcategory 
+├── Symptoms 
+├── Environment 
+├── Problem
+├── Prerequisites
+├── Troubleshooting Steps
+├── Resolution
+├── Verification
+├── Escalation Criteria
+├── Tags
+├── Author
+└── Last Reviewed Search I want users to be able to search for things like: 
+**VPN** won't connect and find the appropriate troubleshooting articles. Category navigation Users should be able to browse: 
+Hardware
+├── Laptops
+├── Desktops
+├── Printers
+└── Networking
 
-Software ├── Windows ├── Microsoft **365** ├── **VPN** └── Applications
+Software
+├── Windows
+├── Microsoft **365**
+├── **VPN**
+└── Applications
 
 Process
 ├── Onboarding
 ├── Offboarding
 ├── Account Management
 └── Escalation
+
 Article management
+
 Eventually, authorized users should be able to:
     • Create articles 
     • Edit articles 
@@ -307,6 +390,7 @@ Eventually, authorized users should be able to:
     • Add tags 
     • Track revisions 
 Authentication
+
 I also plan to add authentication so that regular users can read articles while IT staff can manage the knowledge base.
 
 
@@ -317,6 +401,7 @@ I also plan to add authentication so that regular users can read articles while 
 
 One of the biggest lessons from building this was that I didn't need to build the entire application at once.
 I broke the project into layers:
+
 ## Python environment
        ↓
 ## FastAPI
@@ -330,10 +415,23 @@ I broke the project into layers:
 ## Next.js frontend
        ↓
 ## Connect frontend to API
+
 That made it much easier to troubleshoot when something went wrong.
+
 I also learned how important indentation is when working with Python. A single indentation error can prevent the entire FastAPI application from starting. I learned this by asking AI, because I just got stumped and there is no one here I can ask. 
+
 Another important lesson was to keep configuration information, such as database passwords, out of the source code by using a .env file. I learned how environmental variables work and how to use them.
 
 ### Final Result
 
-I started with an idea for an IT troubleshooting knowledge base. I now have the foundation of a real application: Next.js provides the user interface. FastAPI provides the backend **API**. PostgreSQL stores the knowledge-base data. The three components are communicating successfully, and my first real troubleshooting article is being retrieved from the database and displayed on the website. This gives me a solid foundation to continue building a more complete IT knowledge management platform. The next major step is turning the single article preview into a full article system with structured troubleshooting content, individual article pages, search, and category navigation.
+I started with an idea for an IT troubleshooting knowledge base. 
+I now have the foundation of a real application:
+Next.js provides the user interface. 
+
+FastAPI provides the backend **API**. 
+
+PostgreSQL stores the knowledge-base data. 
+
+The three components are communicating successfully, and my first real troubleshooting article is being retrieved from the database and displayed on the website. This gives me a solid foundation to continue building a more complete IT knowledge management platform. 
+
+The next major step is turning the single article preview into a full article system with structured troubleshooting content, individual article pages, search, and category navigation.
