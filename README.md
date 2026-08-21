@@ -255,10 +255,6 @@ The basic interface looks conceptually like this:
 
 
 
-<img width="453" height="401" alt="Screenshot 2026-08-21 143932" src="https://github.com/user-attachments/assets/5583fa0f-e1b2-4dc3-a38a-751ff303d60f" />
-
-
-
 
 ## Connecting Next.js to FastAPI
 
