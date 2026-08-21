@@ -263,28 +263,17 @@ That wasn't what I wanted.
 I wanted the website to retrieve its information from the database.
 I therefore added code to the Next.js application that calls:
 
+
 [http://**127**.0.0.1:**8000**/articles](http://**127**.0.0.1:**8000**/articles)
+
+
+
 The flow became:
 
-Next.js
-    │
-    │ **GET** /articles
-    ▼
-FastAPI
-    │
-    │ **SQL** query
-    ▼
-PostgreSQL
-    │
-    │ article data
-    ▼
-FastAPI
-    │
-    ▼
-Next.js
-    │
-    ▼
-Browser
+
+<img width="413" height="296" alt="121212" src="https://github.com/user-attachments/assets/a65fee9b-bd71-4e5f-aa4e-f2d0d3a7d4e7" />
+
+
 
 I also added **CORS** configuration to FastAPI so that the Next.js application running on port **3000** could communicate with the FastAPI application running on port **8000**.
 
