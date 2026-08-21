@@ -73,10 +73,15 @@ it_knowledge
 
 My initial database structure was designed around categories, articles, and tags. 
 The tables were:
+
 it_knowledge │
+
 ├── categories
+
 ├── articles
+
 ├── tags
+
 └── article_tags
 
 The categories table contains the main knowledge-base categories. 
