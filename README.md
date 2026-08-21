@@ -288,32 +288,16 @@ That proved that the entire data pipeline was working.
 
 What I Have Built So Far
 My project currently looks like:
-it-knowledge-base
-│
-├── backend
-│   ├── .env
-│   ├── .venv
-│   └── main.py
-│
-└── frontend
-    ├── public
-    ├── src
-    │   └── app
-    │       ├── globals.css
-    │       ├── layout.tsx
-    │       └── page.tsx
-    ├── package.json
-    └── ...
-The backend provides:
-**GET**  /
-**GET**  /categories
-**GET**  /articles
-**POST** /articles
-The database contains:
-Hardware
-Software
-Process
-and my first article:
+
+<img width="503" height="312" alt="1aaaaaaaaa" src="https://github.com/user-attachments/assets/0790817e-bbae-43b9-8c04-8b9228534acd" />
+
+
+<img width="547" height="194" alt="1121222222222222222" src="https://github.com/user-attachments/assets/108f3234-7aea-4f19-8f43-e9878b207ecd" />
+
+
+
+
+
 
 ### Laptop Will Not Power On
 
