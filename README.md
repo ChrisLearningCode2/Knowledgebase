@@ -34,7 +34,7 @@ I built each layer separately and then connected them together.
 
 ## Setting Up the Backend
 
-I started on a Windows 11 laptop and created a project directory: it-knowledge-base └── backend Inside the backend directory, I created a Python virtual environment: backend └── .venv The virtual environment gives the project its own Python packages without interfering with other Python projects on my computer. I then created: backend └── main.py I used FastAPI for the backend because I wanted a lightweight Python **API** that would be easy to develop and test. I am also still a beginner. I ran the application with: python -m uvicorn main:app --reload This started the **API** at: [http://**127**.0.0.1:**8000**](http://**127**.0.0.1:**8000**) FastAPI also automatically provided an interactive **API** documentation page at: [http://**127**.0.0.1:**8000**/docs](http://**127**.0.0.1:**8000**/docs) This became extremely useful for testing the **API** while I was developing it.
+I started on a Windows 11 laptop and created a project directory:\ it-knowledge-base\ └── backend\ Inside the backend directory, I created a Python virtual environment:\ backend └── .venv\ The virtual environment gives the project its own Python packages without interfering with other Python projects on my computer.\ I then created:\ backend └── main.py\ I used FastAPI for the backend because I wanted a lightweight Python **API** that would be easy to develop and test. I am also still a beginner.\ I ran the application with:\ python -m uvicorn main:app --reload\ This started the **API** at:\ [http://**127**.0.0.1:**8000**](http://**127**.0.0.1:**8000**) \FastAPI also automatically provided an interactive **API** documentation page at:\ [http://**127**.0.0.1:**8000**/docs](http://**127**.0.0.1:**8000**/docs) \This became extremely useful for testing the **API** while I was developing it.
 
 <img width="431" height="257" alt="Screenshot 2026-08-21 144054" src="https://github.com/user-attachments/assets/66843a45-33a2-40b0-bd32-e9bcb9a1f84d" />
 
@@ -49,71 +49,71 @@ Next, I installed PostgreSQL 18. Initially, I couldn't run: psql --version becau
 
 ## Creating the Database
 
-Using pgAdmin, I created a PostgreSQL database called: it_knowledge My initial database structure was designed around categories, articles, and tags. The tables were: it_knowledge │ ├── categories ├── articles ├── tags └── article_tags The categories table contains the main knowledge-base categories. I created: Hardware Software Process I then verified them with: **SELECT** * **FROM** categories; and confirmed that all three categories existed.
+Using pgAdmin, I created a PostgreSQL database called:\ it_knowledge\ My initial database structure was designed around categories, articles, and tags. \The tables were:\ it_knowledge │\ ├── categories\ ├── articles\ ├── tags\ └── article_tags\ The categories table contains the main knowledge-base categories. I created: Hardware Software Process I then verified them with:\ **SELECT** * **FROM** categories; and confirmed that all three categories existed.
 
 ## Creating the Articles Table
 
 The articles table stores the actual knowledge-base content.
-My initial structure included:
-id
-title
-category_id
-content
-status
-author
-created_at
-updated_at
-last_reviewed
-The relationship between articles and categories looks like this:
-categories
-    │
-    │ category_id
-    ▼
-articles
+My initial structure included:\
+id\
+title\
+category_id\
+content\
+status\
+author\
+created_at\
+updated_at\
+last_reviewed\
+The relationship between articles and categories looks like this:\
+categories\
+    │\
+    │ category_id\
+    ▼\
+articles\
 This means an article can belong to a category such as Hardware, Software, or Process.
-For example:
-### Laptop Will Not Power On
-    │
-    ▼
-    Hardware
+For example:\
+### Laptop Will Not Power On\
+    │\
+    ▼\
+    Hardware\
 
 ## Connecting Python to PostgreSQL
 
-I then connected my FastAPI application to PostgreSQL. I installed: pip install psycopg2-binary python-dotenv I used psycopg2 to communicate with PostgreSQL and python-dotenv so that I could keep my database connection information out of my Python source code. I created a .env file inside the backend directory to store settings, sensitive information and other environmental varibles: backend ├── .env ├── .venv └── main.py The .env file contains my database connection string: DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@localhost:**5432**/it_knowledge I replaced YOUR_PASSWORD with the password I created when I installed PostgreSQL. I also made sure not to publish my actual database password.
+I then connected my FastAPI application to PostgreSQL. I installed: pip install psycopg2-binary python-dotenv I used psycopg2 to communicate with PostgreSQL and python-dotenv so that I could keep my database connection information out of my Python source code. I created a .env file inside the backend directory to store settings, sensitive information and other environmental varibles:\ backend\ ├── .env\ ├── .venv\ └── main.py\ The .env file contains my database connection string:\ DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@localhost:**5432**/it_knowledge I replaced YOUR_PASSWORD with the password I created when I installed PostgreSQL. \I also made sure not to publish my actual database password.
 
 ## Building the FastAPI API
 
 I created several **API** endpoints.
-The first was a basic health check:
+The first was a basic health check:\
 **GET** /
-which returns:
+which returns:\
 {
   *message*: *IT Knowledge Base is running!*
-}
-I then created:
+}\
+I then created:\
 **GET** /categories
 This allows the application to retrieve the categories stored in PostgreSQL.
-The result looks like:
-[
-    {
-    *id*: 1,
-    *name*: *Hardware*
-    },
-    {
-    *id*: 2,
-    *name*: *Software*
-    },
-    {
-    *id*: 3,
-    *name*: *Process*
-    }
-]
+The result looks like:\
+[\
+    {\
+    *id*: 1,\
+    *name*: *Hardware*\
+    },\
+    {\
+    *id*: 2,\
+    *name*: *Software*\
+    },\
+    {\
+    *id*: 3,\
+    *name*: *Process*\
+    }\
+]\
 
 ## Creating Articles Through the API
 
 I then created a **POST** /articles endpoint.
 This allows me to create an article through the **API**.
-For example:
+For example:\
 {
     *title*: *Laptop Will Not Power On*,
     *category_id*: 1,
@@ -126,14 +126,14 @@ When I executed the request through FastAPI's /docs interface, I received:
     *id*: 1,
     *message*: *Article created successfully*
 }
-That was my first real knowledge-base article.
+That was my first real knowledge-base article.\
 
 ## Retrieving Articles
 
-Next, I created:
+Next, I created:\
 **GET** /articles
 This endpoint queries PostgreSQL and joins the articles with their categories.
-The **API** can now return information such as:
+The **API** can now return information such as:\
 [
     {
     *id*: 1,
@@ -143,8 +143,8 @@ The **API** can now return information such as:
     *author*: *IT Support*,
     *category*: *Hardware*
     }
-]
-At this point I had a working data flow:
+]\
+At this point I had a working data flow:\
 PostgreSQL
     │
     ▼
