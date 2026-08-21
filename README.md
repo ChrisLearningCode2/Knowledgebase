@@ -228,11 +228,12 @@ PostgreSQL
 ## Building the Frontend
 
 Once the backend was working, I created a frontend using Next.js.
-From my project directory, I ran: npx create-next-app@latest frontend This gave me: 
+From my project directory, I ran: npx create-next-app@latest frontend This gave me: /
 
-it-knowledge-base │
-├── backend │
-└── frontend
+it-knowledge-base │/
+├── backend/
+│/
+└── frontend/
 I started the frontend with: npm run dev The Next.js application became available at: [http://localhost:**3000**](http://localhost:**3000**) 
 
 Initially, I saw the standard Next.js starter page. I replaced that page with my own IT Knowledge Base interface.
