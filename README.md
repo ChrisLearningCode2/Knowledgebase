@@ -17,8 +17,7 @@ I wanted an IT knowledge base that could eventually contain articles such as:\
     • Password reset procedures \
 I wanted the system to be more than a collection of documents. I wanted a proper application with a database, **API**, and web interface.
 The basic architecture I chose was:\
-    Web Browser
-    
+    Web Browser    
     │
     ▼
     Next.js Frontend
