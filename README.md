@@ -72,17 +72,17 @@ Using pgAdmin, I created a PostgreSQL database called:
 it_knowledge
 
 My initial database structure was designed around categories, articles, and tags. 
-The tables were:
+The tables were:\
 
-it_knowledge │
+it_knowledge │\
 
-├── categories
+├── categories\
 
-├── articles
+├── articles\
 
-├── tags
+├── tags\
 
-└── article_tags
+└── article_tags\
 
 The categories table contains the main knowledge-base categories. 
 I created: 
