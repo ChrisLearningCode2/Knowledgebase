@@ -36,18 +36,18 @@ I built each layer separately and then connected them together.
 
 I started on a Windows 11 laptop and created a project directory:
 
-it-knowledge-base
-└── backend
+it-knowledge-base/
+└── backend/
 Inside the backend directory, I created a Python virtual environment:
 
-backend 
-└── .venv
+backend /
+└── .venv/
 The virtual environment gives the project its own Python packages without interfering with other Python projects on my computer.
 
 I then created:
 
-backend 
-└── main.py
+backend /
+└── main.py/
 
 I used FastAPI for the backend because I wanted a lightweight Python **API** that would be easy to develop and test. I am also still a beginner.
 
