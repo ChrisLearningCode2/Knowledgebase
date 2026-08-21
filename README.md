@@ -34,7 +34,26 @@ I built each layer separately and then connected them together.
 
 ## Setting Up the Backend
 
-I started on a Windows 11 laptop and created a project directory:\ it-knowledge-base\ └── backend\ Inside the backend directory, I created a Python virtual environment:\ backend └── .venv\ The virtual environment gives the project its own Python packages without interfering with other Python projects on my computer.\ I then created:\ backend └── main.py\ I used FastAPI for the backend because I wanted a lightweight Python **API** that would be easy to develop and test. I am also still a beginner.\ I ran the application with:\ python -m uvicorn main:app --reload\ This started the **API** at:\ [http://**127**.0.0.1:**8000**](http://**127**.0.0.1:**8000**) \FastAPI also automatically provided an interactive **API** documentation page at:\ [http://**127**.0.0.1:**8000**/docs](http://**127**.0.0.1:**8000**/docs) \This became extremely useful for testing the **API** while I was developing it.
+I started on a Windows 11 laptop and created a project directory:
+
+it-knowledge-base
+└── backend
+Inside the backend directory, I created a Python virtual environment:
+
+backend 
+└── .venv
+The virtual environment gives the project its own Python packages without interfering with other Python projects on my computer.
+I then created:
+backend 
+└── main.py
+I used FastAPI for the backend because I wanted a lightweight Python **API** that would be easy to develop and test. I am also still a beginner.
+
+I ran the application with:
+python -m uvicorn main:app --reload\ This started the **API** at: [http://**127**.0.0.1:**8000**](http://**127**.0.0.1:**8000**) 
+
+FastAPI also automatically provided an interactive **API** documentation page at:[http://**127**.0.0.1:**8000**/docs](http://**127**.0.0.1:**8000**/docs)
+
+This became extremely useful for testing the **API** while I was developing it.
 
 <img width="431" height="257" alt="Screenshot 2026-08-21 144054" src="https://github.com/user-attachments/assets/66843a45-33a2-40b0-bd32-e9bcb9a1f84d" />
 
