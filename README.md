@@ -291,32 +291,9 @@ I also added **CORS** configuration to FastAPI so that the Next.js application r
 ## The Result
 
 At this point, I had successfully connected all three major components.
-    ┌───────────────┐
-    │    Browser    │
-    │ localhost:**3000**│
-    └───────┬───────┘
-    │
-    ▼
-    ┌───────────────┐
-    │    Next.js    │
-    │   Frontend    │
-    └───────┬───────┘
-    │
-    **HTTP** / **JSON**
-    │
-    ▼
-    ┌───────────────┐
-    │    FastAPI    │
-    │    Backend    │
-    └───────┬───────┘
-    │
-    **SQL** queries
-    │
-    ▼
-    ┌───────────────┐
-    │  PostgreSQL   │
-    │   Database    │
-    └───────────────┘
+<img width="279" height="325" alt="aaaaa" src="https://github.com/user-attachments/assets/fe106b78-bc9a-4e8c-b2a9-74cfad10a807" />
+
+
 Most importantly, when I created the Laptop Will Not Power On article in PostgreSQL, the article appeared automatically on my Next.js website.
 That proved that the entire data pipeline was working.
 
