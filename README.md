@@ -7,14 +7,14 @@ Building a Knowledgebase
 Building an IT Knowledge Base with Next.js, FastAPI, and PostgreSQL I recently started building an IT troubleshooting knowledge base from scratch. My goal was to create a system where I could organize IT support articles into categories such as Hardware, Software, and Process, while eventually allowing users to search, read, and manage troubleshooting information through a web interface. This article documents what I built so far and the steps I took to get the first working version running on Windows 11.
 
 What I Wanted to Build
-I wanted an IT knowledge base that could eventually contain articles such as:
-    • Laptop will not power on 
-    • **VPN** will not connect 
-    • Outlook repeatedly asks for a password 
-    • Printer is offline 
-    • New employee onboarding 
-    • Employee offboarding 
-    • Password reset procedures 
+I wanted an IT knowledge base that could eventually contain articles such as:\
+    • Laptop will not power on \
+    • **VPN** will not connect \
+    • Outlook repeatedly asks for a password \
+    • Printer is offline \
+    • New employee onboarding \
+    • Employee offboarding \
+    • Password reset procedures \
 I wanted the system to be more than a collection of documents. I wanted a proper application with a database, **API**, and web interface.
 The basic architecture I chose was:
     Web Browser
