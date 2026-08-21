@@ -43,9 +43,12 @@ Inside the backend directory, I created a Python virtual environment:
 backend 
 └── .venv
 The virtual environment gives the project its own Python packages without interfering with other Python projects on my computer.
+
 I then created:
+
 backend 
 └── main.py
+
 I used FastAPI for the backend because I wanted a lightweight Python **API** that would be easy to develop and test. I am also still a beginner.
 
 I ran the application with:
@@ -72,15 +75,15 @@ Using pgAdmin, I created a PostgreSQL database called:
 it_knowledge
 
 My initial database structure was designed around categories, articles, and tags. 
-The tables were:\
+The tables were:
 
-it_knowledge │\
+it_knowledge │
 
-├── categories\
+├── categories
 
-├── articles\
+├── articles
 
-├── tags\
+├── tags
 
 └── article_tags\
 
