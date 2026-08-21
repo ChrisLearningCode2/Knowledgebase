@@ -307,49 +307,89 @@ What I Plan to Build Next This is only the foundation. My next goal is to turn t
 Some of the features I plan to add include: 
 Better article structure Instead of storing everything in one content field, I want articles to have structured sections: 
 Article 
+
 ├── Title
+
 ├── Category 
+
 ├── Subcategory 
+
 ├── Symptoms 
+
 ├── Environment 
+
 ├── Problem
+
 ├── Prerequisites
+
 ├── Troubleshooting Steps
+
 ├── Resolution
+
 ├── Verification
+
 ├── Escalation Criteria
+
 ├── Tags
+
 ├── Author
+
 └── Last Reviewed Search I want users to be able to search for things like: 
+
 **VPN** won't connect and find the appropriate troubleshooting articles. Category navigation Users should be able to browse: 
+
 Hardware
+
 ├── Laptops
+
 ├── Desktops
+
 ├── Printers
+
 └── Networking
 
+
 Software
+
 ├── Windows
+
 ├── Microsoft **365**
+
 ├── **VPN**
+
 └── Applications
 
+
 Process
+
 ├── Onboarding
+
 ├── Offboarding
+
 ├── Account Management
+
 └── Escalation
+
 
 Article management
 
+
 Eventually, authorized users should be able to:
+
     • Create articles 
-    • Edit articles 
+    
+    • Edit articles
+    
     • Publish articles 
-    • Archive articles 
+    
+    • Archive articles
+    
     • Review articles 
+    
     • Add tags 
+    
     • Track revisions 
+    
 Authentication
 
 I also plan to add authentication so that regular users can read articles while IT staff can manage the knowledge base.
@@ -362,6 +402,7 @@ I also plan to add authentication so that regular users can read articles while 
 
 One of the biggest lessons from building this was that I didn't need to build the entire application at once.
 I broke the project into layers:
+
 
 ## Python environment
        ↓
@@ -377,6 +418,7 @@ I broke the project into layers:
        ↓
 ## Connect frontend to API
 
+
 That made it much easier to troubleshoot when something went wrong.
 
 I also learned how important indentation is when working with Python. A single indentation error can prevent the entire FastAPI application from starting. I learned this by asking AI, because I just got stumped and there is no one here I can ask. 
@@ -386,12 +428,15 @@ Another important lesson was to keep configuration information, such as database
 ### Final Result
 
 I started with an idea for an IT troubleshooting knowledge base. 
+
 I now have the foundation of a real application:
+
 Next.js provides the user interface. 
 
 FastAPI provides the backend **API**. 
 
 PostgreSQL stores the knowledge-base data. 
+
 
 The three components are communicating successfully, and my first real troubleshooting article is being retrieved from the database and displayed on the website. This gives me a solid foundation to continue building a more complete IT knowledge management platform. 
 
