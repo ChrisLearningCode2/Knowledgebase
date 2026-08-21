@@ -250,24 +250,9 @@ I created a homepage containing:
     • Process category 
     • Recently Added section 
 The basic interface looks conceptually like this:
-┌─────────────────────────────────────────────┐
-│              IT **KNOWLEDGE** **BASE**              │
-│                                             │
-│ Search IT troubleshooting articles...       │
-│                                             │
-├─────────────────────────────────────────────┤
-│                                             │
-│  🖥️ Hardware    💻 Software    📋 Process   │
-│                                             │
-├─────────────────────────────────────────────┤
-│                                             │
-│ Recently Added                              │
-│                                             │
-│ Laptop Will Not Power On                    │
-│ Hardware                                    │
-│ Troubleshooting information...              │
-│                                             │
-└─────────────────────────────────────────────┘
+
+<img width="231" height="249" alt="zZxc" src="https://github.com/user-attachments/assets/fea73e30-29c1-4537-b2c7-c1a027cf1e5e" />
+
 
 
 <img width="453" height="401" alt="Screenshot 2026-08-21 143932" src="https://github.com/user-attachments/assets/5583fa0f-e1b2-4dc3-a38a-751ff303d60f" />
