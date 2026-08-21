@@ -10,28 +10,17 @@ Building an IT Knowledge Base with Next.js, FastAPI, and PostgreSQL I recently s
 
 What I Wanted to Build
 I wanted an IT knowledge base that could eventually contain articles such as:
-    • Laptop will not power on 
-    • **VPN** will not connect 
-    • Outlook repeatedly asks for a password 
-    • Printer is offline 
-    • New employee onboarding 
-    • Employee offboarding 
-    • Password reset procedures 
+
+<img width="157" height="71" alt="1" src="https://github.com/user-attachments/assets/077a5292-2b18-48f9-bcf6-3ab2e75f42a9" />
+
+
+
 I wanted the system to be more than a collection of documents. I wanted a proper application with a database, **API**, and web interface.
 The basic architecture I chose was:
-    Web Browser
-    │
-    ▼
-    Next.js Frontend
-    Port **3000**
-    │
-    ▼
-    FastAPI Backend
-    Port **8000**
-    │
-    ▼
-    PostgreSQL Database
-    Port **5432**
+
+<img width="101" height="133" alt="2" src="https://github.com/user-attachments/assets/bef88db7-eb32-4d93-92af-847fe8b64e6f" />
+
+    
 I built each layer separately and then connected them together.
 
 ## Setting Up the Backend
@@ -54,27 +43,8 @@ Using pgAdmin, I created a PostgreSQL database called: it_knowledge My initial d
 
 The articles table stores the actual knowledge-base content.
 My initial structure included:
-id
-title
-category_id
-content
-status
-author
-created_at
-updated_at
-last_reviewed
-The relationship between articles and categories looks like this:
-categories
-    │
-    │ category_id
-    ▼
-articles
-This means an article can belong to a category such as Hardware, Software, or Process.
-For example:
-### Laptop Will Not Power On
-    │
-    ▼
-    Hardware
+<img width="311" height="218" alt="3" src="https://github.com/user-attachments/assets/154cc3e0-9719-41ed-9247-5edba8d9272c" />
+
 
 
     <img width="682" height="420" alt="Screenshot 2026-08-21 091243" src="https://github.com/user-attachments/assets/6d153878-b08c-4dcd-97cf-a43478ff1574" />
@@ -92,29 +62,9 @@ I then connected my FastAPI application to PostgreSQL. I installed: pip install 
 
 I created several **API** endpoints.
 The first was a basic health check:
-**GET** /
-which returns:
-{
-  *message*: *IT Knowledge Base is running!*
-}
-I then created:
-**GET** /categories
-This allows the application to retrieve the categories stored in PostgreSQL.
-The result looks like:
-[
-    {
-    *id*: 1,
-    *name*: *Hardware*
-    },
-    {
-    *id*: 2,
-    *name*: *Software*
-    },
-    {
-    *id*: 3,
-    *name*: *Process*
-    }
-]
+
+<img width="281" height="239" alt="4" src="https://github.com/user-attachments/assets/394f6505-a393-4a28-b5e7-c04f7bd4613b" />
+
 
 <img width="943" height="470" alt="Screenshot 2026-08-21 144005" src="https://github.com/user-attachments/assets/11895674-b8c3-4a0b-9cf3-1b8f8b2ba2ad" />
 
@@ -125,18 +75,10 @@ The result looks like:
 I then created a **POST** /articles endpoint.
 This allows me to create an article through the **API**.
 For example:
-{
-    *title*: *Laptop Will Not Power On*,
-    *category_id*: 1,
-    *content*: *Symptoms:\n- Laptop does not respond...*,
-    *status*: *published*,
-    *author*: *IT Support*
-}
-When I executed the request through FastAPI's /docs interface, I received:
-{
-    *id*: 1,
-    *message*: *Article created successfully*
-}
+<img width="253" height="121" alt="5" src="https://github.com/user-attachments/assets/9559d876-6203-4ed6-817b-1de24069d685" />
+
+
+
 That was my first real knowledge-base article.
 
 ## Retrieving Articles
@@ -145,24 +87,9 @@ Next, I created:
 **GET** /articles
 This endpoint queries PostgreSQL and joins the articles with their categories.
 The **API** can now return information such as:
-[
-    {
-    *id*: 1,
-    *title*: *Laptop Will Not Power On*,
-    *content*: *...*,
-    *status*: *published*,
-    *author*: *IT Support*,
-    *category*: *Hardware*
-    }
-]
-At this point I had a working data flow:
-PostgreSQL
-    │
-    ▼
- FastAPI
-    │
-    ▼
-**GET** /articles
+
+<img width="157" height="186" alt="6" src="https://github.com/user-attachments/assets/d220b9d5-93b3-4d67-8e89-441325ddc766" />
+
 
 
 <img width="453" height="401" alt="Screenshot 2026-08-21 143932" src="https://github.com/user-attachments/assets/53a6bf77-2004-4d8d-8fea-038327efc55f" />
@@ -175,31 +102,9 @@ Once the backend was working, I created a frontend using Next.js. From my projec
 ## Designing the Knowledge Base Homepage
 
 I created a homepage containing:
-    • IT Knowledge Base title 
-    • Search box 
-    • Hardware category 
-    • Software category 
-    • Process category 
-    • Recently Added section 
-The basic interface looks conceptually like this:
-┌─────────────────────────────────────────────┐
-│              IT **KNOWLEDGE** **BASE**              │
-│                                             │
-│ Search IT troubleshooting articles...       │
-│                                             │
-├─────────────────────────────────────────────┤
-│                                             │
-│  🖥️ Hardware    💻 Software    📋 Process   │
-│                                             │
-├─────────────────────────────────────────────┤
-│                                             │
-│ Recently Added                              │
-│                                             │
-│ Laptop Will Not Power On                    │
-│ Hardware                                    │
-│ Troubleshooting information...              │
-│                                             │
-└─────────────────────────────────────────────┘
+   
+    <img width="202" height="255" alt="7" src="https://github.com/user-attachments/assets/5574648d-7cec-4239-8061-6f061991b0bd" />
+
 
 <img width="431" height="257" alt="Screenshot 2026-08-21 144054" src="https://github.com/user-attachments/assets/5fd0c9cb-cd56-4880-96d9-7ac98e475052" />
 
@@ -213,56 +118,19 @@ I wanted the website to retrieve its information from the database.
 I therefore added code to the Next.js application that calls:
 [http://**127**.0.0.1:**8000**/articles](http://**127**.0.0.1:**8000**/articles)
 The flow became:
-Next.js
-    │
-    │ **GET** /articles
-    ▼
-FastAPI
-    │
-    │ **SQL** query
-    ▼
-PostgreSQL
-    │
-    │ article data
-    ▼
-FastAPI
-    │
-    ▼
-Next.js
-    │
-    ▼
-Browser
+
+<img width="104" height="191" alt="8" src="https://github.com/user-attachments/assets/45d52020-4825-4a59-b023-6c7f651c235a" />
+
+
 I also added **CORS** configuration to FastAPI so that the Next.js application running on port **3000** could communicate with the FastAPI application running on port **8000**.
 
 ## The Result
 
 At this point, I had successfully connected all three major components.
-    ┌───────────────┐
-    │    Browser    │
-    │ localhost:**3000**│
-    └───────┬───────┘
-    │
-    ▼
-    ┌───────────────┐
-    │    Next.js    │
-    │   Frontend    │
-    └───────┬───────┘
-    │
-    **HTTP** / **JSON**
-    │
-    ▼
-    ┌───────────────┐
-    │    FastAPI    │
-    │    Backend    │
-    └───────┬───────┘
-    │
-    **SQL** queries
-    │
-    ▼
-    ┌───────────────┐
-    │  PostgreSQL   │
-    │   Database    │
-    └───────────────┘
+   <img width="109" height="259" alt="9" src="https://github.com/user-attachments/assets/059218a9-476b-45e6-9aef-091b53e59ff2" />
+
+
+    
 Most importantly, when I created the Laptop Will Not Power On article in PostgreSQL, the article appeared automatically on my Next.js website.
 That proved that the entire data pipeline was working.
 
@@ -272,53 +140,22 @@ That proved that the entire data pipeline was working.
 What I Have Built So Far
 My project currently looks like:
 it-knowledge-base
-│
-├── backend
-│   ├── .env
-│   ├── .venv
-│   └── main.py
-│
-└── frontend
-    ├── public
-    ├── src
-    │   └── app
-    │       ├── globals.css
-    │       ├── layout.tsx
-    │       └── page.tsx
-    ├── package.json
-    └── ...
+
+<img width="104" height="152" alt="10" src="https://github.com/user-attachments/assets/05bd3b66-b023-4560-a237-06daaf1f0176" />
+
+
 The backend provides:
-**GET**  /
-**GET**  /categories
-**GET**  /articles
-**POST** /articles
-The database contains:
-Hardware
-Software
-Process
-and my first article:
-### Laptop Will Not Power On
-The frontend displays the real database content.
+
+<img width="183" height="117" alt="11" src="https://github.com/user-attachments/assets/83c3206b-bcac-4c75-bd31-5fc9efb7b252" />
+
 
 What I Plan to Build Next This is only the foundation. My next goal is to turn this into a full IT support knowledge platform. Some of the features I plan to add include: Better article structure Instead of storing everything in one content field, I want articles to have structured sections: Article ├── Title ├── Category ├── Subcategory ├── Symptoms ├── Environment ├── Problem ├── Prerequisites ├── Troubleshooting Steps ├── Resolution ├── Verification ├── Escalation Criteria ├── Tags ├── Author └── Last Reviewed Search I want users to be able to search for things like: **VPN** won't connect and find the appropriate troubleshooting articles. Category navigation Users should be able to browse: Hardware ├── Laptops ├── Desktops ├── Printers └── Networking
 
 Software ├── Windows ├── Microsoft **365** ├── **VPN** └── Applications
 
-Process
-├── Onboarding
-├── Offboarding
-├── Account Management
-└── Escalation
-Article management
-Eventually, authorized users should be able to:
-    • Create articles 
-    • Edit articles 
-    • Publish articles 
-    • Archive articles 
-    • Review articles 
-    • Add tags 
-    • Track revisions 
-Authentication
+<img width="304" height="177" alt="12" src="https://github.com/user-attachments/assets/1e99bdc0-0100-47d3-ace7-85fbc217df26" />
+
+
 I also plan to add authentication so that regular users can read articles while IT staff can manage the knowledge base.
 
 <img width="661" height="230" alt="Screenshot 2026-08-21 144116" src="https://github.com/user-attachments/assets/bf5df129-9423-4226-a619-54d600da4bd2" />
