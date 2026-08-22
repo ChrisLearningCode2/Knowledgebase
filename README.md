@@ -4,7 +4,7 @@ Building a Knowledgebase
 
 
 
-Building an IT Knowledge Base with Next.js, FastAPI, and PostgreSQL I recently started building an IT troubleshooting knowledge base from scratch. My goal was to create a system where I could organize IT support articles into categories such as Hardware, Software, and Process, while eventually allowing users to search, read, and manage troubleshooting information through a web interface. This article documents what I built so far and the steps I took to get the first working version running on Windows 11.
+Building an IT Knowledge Base with Next.js, FastAPI, and PostgreSQL I recently started building an IT troubleshooting knowledge base from scratch. My goal was to create a system where I could organize IT support articles into categories such as Hardware, Software, and Process, while eventually allowing users to search, read, and manage troubleshooting information through a web interface. This article documents what I built so far and the steps I took to get the first working version running on Windows 11. I choose REACT (even though I haven't really practiced with it yet) as it is well known for UIs combined with the idea of the DOM structure and that it can dynamically change elements without reloading the page.
 
 What I Wanted to Build
 I wanted an IT knowledge base that could eventually contain articles such as:\
@@ -49,7 +49,7 @@ I then created:
 backend /
 └── main.py/
 
-I used FastAPI for the backend because I wanted a lightweight Python **API** that would be easy to develop and test. I am also still a beginner.
+I used FastAPI for the backend because I wanted a lightweight Python **API** that would be easy to develop and test. I am also still a beginner but have worked with Python before.
 
 I ran the application with:
 python -m uvicorn main:app --reload\ This started the **API** at: [http://**127**.0.0.1:**8000**](http://**127**.0.0.1:**8000**) 
